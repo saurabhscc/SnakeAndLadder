@@ -6,7 +6,8 @@ namespace SnakeAndLadder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To Snake And Ladder");
+            SnakeLadderStimulation SnakeLadder= new SnakeLadderStimulation();
+            SnakeLadder.Snake();
         }
     }
 }
