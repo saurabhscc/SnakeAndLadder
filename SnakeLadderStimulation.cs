@@ -9,16 +9,19 @@ namespace SnakeAndLadder
         /// <summary>
         /// This Method is For Players Exact Winning Position
         /// </summary>
-        public int No_Play = 1;
-        public int Ladder = 2;
-        public int Snake = 3;
-        public int Win_position = 100;
-        public int Position_check = 0;
-        public void Snakes3()
+        public static int No_Play = 1;
+        public static int Ladder = 2;
+        public static int Snake = 3;
+        public static int Win_position = 100;
+        public static int Position_check = 0;
+        public void Snakes4()
         {
+            int noOfDieRoll = 0;
             int position = 0;
             Console.WriteLine("Player is at Start  Position: " + position);
-
+            while (position < Win_position)
+            {
+                        
             Random random = new Random();
             int droll = 0;
             while (true)
@@ -28,16 +31,15 @@ namespace SnakeAndLadder
             }
             Console.WriteLine("Number of dice : " + droll);
 
-            while (position < Win_position)
-
-            {
-                Random ran = new Random();
-                int option = 0;
-                while (true)
+            Random ran = new Random();
+            noOfDieRoll++;
+            int option = 0;
+            while (true)
                 {
                     option = ran.Next(4);
                     if (option != 0) break;
                 }
+                                         
                 Console.WriteLine("====OPTIONS======\nOption 1 : No Play\nOption 2 : Ladder \nOption 3 : Snake \n");
                 Console.WriteLine("Option : " + option);
 
@@ -66,7 +68,7 @@ namespace SnakeAndLadder
                         {
                             position = Position_check;
                         }
-                        Console.WriteLine("Player moves Behind by : " + position);
+                        Console.WriteLine("Player Moves Behind by : " + position);
                         break;
                     default:
                         Console.WriteLine("Enter the Correct Value");
