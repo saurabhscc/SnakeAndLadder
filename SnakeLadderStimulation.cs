@@ -7,14 +7,14 @@ namespace SnakeAndLadder
     class SnakeLadderStimulation
     {
         /// <summary>
-        /// This Method is For Players Check For Options
+        /// This Method is For Players Exact Winning Position
         /// </summary>
         public int No_Play = 1;
         public int Ladder = 2;
         public int Snake = 3;
         public int Win_position = 100;
         public int Position_check = 0;
-        public void Snakes2()
+        public void Snakes3()
         {
             int position = 0;
             Console.WriteLine("Player is at Start  Position: " + position);
@@ -49,8 +49,15 @@ namespace SnakeAndLadder
                         break;
 
                     case 2:
-                        position += droll;
-                        Console.WriteLine("Player moves Ahead by : " + position);
+                        if ((position + droll) > Win_position)
+                        {
+                            position = Win_position;
+                        }
+                        else
+                        {
+                            position += droll;
+                        }
+                        Console.WriteLine("Player Moves ahead by : " + position);
                         break;
 
                     case 3:
