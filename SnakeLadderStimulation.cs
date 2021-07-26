@@ -7,74 +7,102 @@ namespace SnakeAndLadder
     class SnakeLadderStimulation
     {
         /// <summary>
-        /// This Method is For Players Exact Winning Position
+        /// This Method is For Two Players are Playing for Winning
         /// </summary>
         public static int No_Play = 1;
         public static int Ladder = 2;
         public static int Snake = 3;
         public static int Win_position = 100;
         public static int Position_check = 0;
-        public void Snakes4()
+        public static int Start_Position = 0;
+        public void Snakes5()
         {
-            int noOfDieRoll = 0;
-            int position = 0;
-            Console.WriteLine("Player is at Start  Position: " + position);
-            while (position < Win_position)
-            {
-                        
+            Boolean player1IsPlaying = true;
+            int player1Position = Start_Position, player2Position = Start_Position, dieRoll, options, dieRolledTimes = 0;
             Random random = new Random();
-            int droll = 0;
-            while (true)
+            while (player1Position != Win_position && player2Position != Win_position)
             {
-                droll = random.Next(7);
-                if (droll != 0) break;
-            }
-            Console.WriteLine("Number of dice : " + droll);
-
-            Random ran = new Random();
-            noOfDieRoll++;
-            int option = 0;
-            while (true)
+                dieRoll = random.Next(6) + 1;
+                dieRolledTimes++;
+                options = random.Next(3) + 1;
+                               
+                switch (options)
                 {
-                    option = ran.Next(4);
-                    if (option != 0) break;
-                }
-                                         
-                Console.WriteLine("====OPTIONS======\nOption 1 : No Play\nOption 2 : Ladder \nOption 3 : Snake \n");
-                Console.WriteLine("Option : " + option);
-
-                switch (option)
-                {
-
                     case 1:
-                        Console.WriteLine("Player Stay  in the Same Position : " + position);
-                        break;
-
-                    case 2:
-                        if ((position + droll) > Win_position)
+                        if (player1IsPlaying)
                         {
-                            position = Win_position;
+                            player1Position += 0;
+                            player1IsPlaying = false;
                         }
                         else
                         {
-                            position += droll;
+                            player2Position += 0;
+                            player1IsPlaying = true;
                         }
-                        Console.WriteLine("Player Moves ahead by : " + position);
                         break;
-
-                    case 3:
-                        position -= droll;
-                        if ((position - droll) < Position_check)
+                    case 2:
+                        if (player1IsPlaying)
                         {
-                            position = Position_check;
+                            if (player1Position + dieRoll <= Win_position)
+                            {
+                                player1Position += dieRoll;
+                                Console.WriteLine("Player 1 landed on a ladder");
+                            }
                         }
-                        Console.WriteLine("Player Moves Behind by : " + position);
+                        else
+                        {
+                            if (player2Position + dieRoll <= Win_position)
+                            {
+                                player2Position += dieRoll;
+                                Console.WriteLine("Player 2 landed on a ladder");
+                            }
+                        }
                         break;
-                    default:
-                        Console.WriteLine("Enter the Correct Value");
-                        break;
-                }
+                    case 3:
+                        if (player1IsPlaying)
+                        {
+                   
+                            player1Position -= dieRoll;
+                            player1IsPlaying = false;
+                            if (player1Position < 0)
+                            {
+                                player1Position = 0;
+                            }
+                            Console.WriteLine("Player 1 landed on a snake");
+                        }
+                        else
+                        {
+                            player2Position -= dieRoll;
+                            player1IsPlaying = true;
+                            if (player2Position < 0)
+                            {
+                                player2Position = 0;
+                            }
+                            Console.WriteLine("Player 2 landed on a snake");
 
+                        }
+                        break;
+                        default:
+                        Console.WriteLine("Enter proper value");
+                        break;
+
+                        Console.WriteLine("Player 1 position  = " + player1Position);
+                        Console.WriteLine("Player 2 position  = " + player2Position);
+                      
+                }
+                if (player1Position == 100)
+                {
+
+                    Console.WriteLine("Player 1 won the game!");
+
+                }
+                else
+                {
+
+                    Console.WriteLine("Player 2 won the game!");
+
+                }
+                Console.WriteLine("Dice was rolled " + dieRolledTimes + " to win the game");
             }
 
         }

@@ -7,7 +7,7 @@ namespace SnakeAndLadder
         static void Main(string[] args)
         {
             SnakeLadderStimulation SnakeLadder= new SnakeLadderStimulation();
-            SnakeLadder.Snakes4();
+            SnakeLadder.Snakes5();
         }
     }
 }
